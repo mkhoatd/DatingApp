@@ -27,7 +27,12 @@ namespace DatingAppAPI.Controllers
         public async Task<ActionResult<AppUser>> GetUserAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
-            return user ?? (ActionResult<AppUser>)NotFound();
+            if (user == null)
+            {
+                _logger.LogDebug("User with {id} not found", id);
+                return (ActionResult<AppUser>)NotFound();
+            }
+            return user;
         }
     }
 }

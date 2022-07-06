@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl --ssl-key ../dev-certs/datingapp.key --ssl-cert ../dev-certs/datingapp.pem",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
