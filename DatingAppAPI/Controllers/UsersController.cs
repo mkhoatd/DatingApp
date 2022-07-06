@@ -11,17 +11,17 @@ namespace DatingAppAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UsersController> _logger;
         private readonly DataContext _context;
 
-        public UserController(ILogger<UserController> logger, DataContext context)
+        public UsersController(ILogger<UsersController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;
         }
-        [HttpGet("UserList")]
+        [HttpGet("UsersList")]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsersAsync() => await _context.Users.ToListAsync();
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUserAsync(int id)
