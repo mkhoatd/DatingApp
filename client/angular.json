@@ -64,6 +64,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "sslCert": "../dev-certs/datingapp.pem",
+            "sslKey": "../dev-certs/datingapp.key",
+            "ssl":true
+          },
           "configurations": {
             "production": {
               "browserTarget": "client:build:production"
