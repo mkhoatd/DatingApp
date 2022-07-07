@@ -17,5 +17,6 @@
     <PackageReference Include="Serilog.Enrichers.Context" Version="4.6.0"/>
     <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0"/>
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1"/>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.21.0"/>
   </ItemGroup>
 </Project>
