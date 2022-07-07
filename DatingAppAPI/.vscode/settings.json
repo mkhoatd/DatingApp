@@ -1,5 +1,7 @@
 {
     "editor.formatOnType": true,
     "editor.formatOnSave": true,
-    "docker.dockerPath": "/usr/local/bin/docker"
+    "docker.dockerPath": "/usr/local/bin/docker",
+    "sqltools.connections": [],
+    "sqltools.useNodeRuntime": true
 }

@@ -9,9 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingAppAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+    public class UsersController : BaseApiController
     {
         private readonly ILogger<UsersController> _logger;
         private readonly DataContext _context;
@@ -21,7 +19,7 @@ namespace DatingAppAPI.Controllers
             _logger = logger;
             _context = context;
         }
-        [HttpGet("UsersList")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsersAsync() => await _context.Users.ToListAsync();
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUserAsync(int id)
