@@ -10,8 +10,6 @@ public class WeatherForecastController : BaseApiController
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
-    private readonly LogLevel _logLevel;
-
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
@@ -26,7 +24,7 @@ public class WeatherForecastController : BaseApiController
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         }).ToArray();
-        _logger.LogDebug(a.ToString());
+        _logger.LogDebug("Return {a}", JsonConvert.SerializeObject(a));
         return a;
     }
 }

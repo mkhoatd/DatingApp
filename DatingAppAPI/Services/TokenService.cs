@@ -26,7 +26,7 @@ namespace DatingAppAPI.Services
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.UserName)
             };
-            _logger.LogDebug("Creating token for user {user.UserName} with claim {claims}", user.UserName, claims);
+            _logger.LogDebug("Creating token for user {user.UserName} with claim {claims}", user.UserName, JsonConvert.SerializeObject(claims));
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -34,10 +34,9 @@ namespace DatingAppAPI.Services
                 Expires = DateTime.Now.AddDays(777),
                 SigningCredentials = creds
             };
-            _logger.LogDebug("Token descriptor for user {user.UserName}: {tokenDescriptor}", user.UserName, tokenDescriptor);
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            _logger.LogDebug("Token for user {user.UserName}: {token}", user.UserName, token);
+            _logger.LogDebug("Token for user {user.UserName}: {token}", user.UserName, JsonConvert.SerializeObject(token));
             return tokenHandler.WriteToken(token);
         }
     }

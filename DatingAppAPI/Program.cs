@@ -1,3 +1,4 @@
+global using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using DatingAppAPI.Data;
 using Serilog;
@@ -43,6 +44,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
