@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingAppAPI", "DatingAppAPI\DatingAppAPI.csproj", "{1CD15125-C208-4BE5-9EAD-DA361F0DEB23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.esproj", "{82D1ECA4-35FE-4B97-B589-62027CFB463A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{1CD15125-C208-4BE5-9EAD-DA361F0DEB23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD15125-C208-4BE5-9EAD-DA361F0DEB23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD15125-C208-4BE5-9EAD-DA361F0DEB23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D1ECA4-35FE-4B97-B589-62027CFB463A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D1ECA4-35FE-4B97-B589-62027CFB463A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D1ECA4-35FE-4B97-B589-62027CFB463A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D1ECA4-35FE-4B97-B589-62027CFB463A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

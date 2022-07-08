@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.2.0-alpha">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>82d1eca4-35fe-4b97-b589-62027cfb463a</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Script Include="**" Exclude="*.esproj;**\node_modules\**" />
+  </ItemGroup>
+</Project>
