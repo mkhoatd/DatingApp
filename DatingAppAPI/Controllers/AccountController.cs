@@ -37,12 +37,12 @@ namespace DatingAppAPI.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-            if (await UserExists(registerDto.Username))
+            if (await UserExists(registerDto.username))
             {
                 return BadRequest("User already exists");
             }
-            var username = registerDto.Username;
-            var password = registerDto.Password;
+            var username = registerDto.username;
+            var password = registerDto.password;
             using var hmac = new HMACSHA512();
             var user = new AppUser
             {

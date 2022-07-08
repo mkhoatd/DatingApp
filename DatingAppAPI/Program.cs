@@ -8,6 +8,9 @@ using Serilog.Sinks.Elasticsearch;
 using DatingAppAPI.Interfaces;
 using DatingAppAPI.Services;
 using DatingAppAPI.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,12 +29,12 @@ builder.Host.UseSerilog((context, configuration) => configuration
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
