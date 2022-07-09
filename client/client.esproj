@@ -7,5 +7,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\app\_guatds" />
+    <Folder Include="src\app\_modules" />
   </ItemGroup>
 </Project>
