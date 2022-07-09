@@ -11,6 +11,7 @@ namespace DatingAppAPI.DTOs
         [Required]
         public string username { get; set; }
         [Required]
+        [StringLength(20, MinimumLength = 4)]
         public string password { get; set; }
     }
 }
