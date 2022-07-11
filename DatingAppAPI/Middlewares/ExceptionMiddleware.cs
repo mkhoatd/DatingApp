@@ -10,8 +10,8 @@ public class ExceptionMiddleware
     private readonly ILogger<ExceptionMiddleware> _logger;
     private readonly IHostEnvironment _env;
 
-    public ExceptionMiddleware(RequestDelegate next, 
-        ILogger<ExceptionMiddleware> logger, 
+    public ExceptionMiddleware(RequestDelegate next,
+        ILogger<ExceptionMiddleware> logger,
         IHostEnvironment env)
     {
         _next = next;
@@ -27,17 +27,17 @@ public class ExceptionMiddleware
         }
         catch (Exception ex)
         {
-            
+
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Response.ContentType = "application/json";
-            _logger.LogError(ex,"HTTP {RequestMethod} {RequestPath} responded {StatusCode}",
+            _logger.LogError(ex, "HTTP {RequestMethod} {RequestPath} responded {StatusCode}",
                 context.Request.Method,
                 context.Request.Path,
                 context.Response.StatusCode);
             var response = _env.IsDevelopment() ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
                 : new ApiException(context.Response.StatusCode, "Internet server error");
 
-            var json = JsonConvert.SerializeObject(response);
+            var json = JsonSerializer.Serialize(response);
             await context.Response.WriteAsync(json);
         }
     }

@@ -1,4 +1,5 @@
-global using Newtonsoft.Json;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using DatingAppAPI.Data;
 using Serilog;

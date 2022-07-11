@@ -24,7 +24,7 @@ public class WeatherForecastController : BaseApiController
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         }).ToArray();
-        _logger.LogDebug("Return {a}", JsonConvert.SerializeObject(a));
+        _logger.LogDebug("Return {a}", JsonSerializer.Serialize(a));
         return a;
     }
 }

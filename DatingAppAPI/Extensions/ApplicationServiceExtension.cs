@@ -14,6 +14,7 @@ namespace DatingAppAPI.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(options =>
             {

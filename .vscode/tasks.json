@@ -39,8 +39,8 @@
         },
         {
             "type": "npm",
-            "label": "npm: start",
-            "script": "start",
+            "label": "npm: test",
+            "script": "test",
             "path": "client",
             "isBackground": true,
             "problemMatcher": {
@@ -59,12 +59,28 @@
         },
         {
             "type": "npm",
-            "label": "npm: test",
-            "script": "test",
-            "path": "client",
+            "script": "start",
+            "label": "npm: start",
             "isBackground": true,
+            "presentation": {
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "options": {
+                "cwd": "client"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "problemMatcher": {
                 "owner": "typescript",
+                "source": "ts",
+                "applyTo": "closedDocuments",
+                "fileLocation": [
+                    "relative",
+                    "${cwd}"
+                ],
                 "pattern": "$tsc",
                 "background": {
                     "activeOnStart": true,
@@ -72,7 +88,7 @@
                         "regexp": "(.*?)"
                     },
                     "endsPattern": {
-                        "regexp": "bundle generation complete"
+                        "regexp": "Compiled |Failed to compile."
                     }
                 }
             }

@@ -70,9 +70,9 @@ namespace DatingAppAPI.Controllers
             }
             using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-            _logger.LogDebug("Password sent has hash: {hash}", JsonConvert.SerializeObject(computedHash));
+            _logger.LogDebug("Password sent has hash: {hash}", JsonSerializer.Serialize(computedHash));
             var databaseHash = user.PasswordHash;
-            _logger.LogDebug("Hash in database: {hash}", JsonConvert.SerializeObject(databaseHash));
+            _logger.LogDebug("Hash in database: {hash}", JsonSerializer.Serialize(databaseHash));
             for (int i = 0; i < computedHash.Length; i++)
             {
                 if (computedHash[i] != databaseHash[i]) return Unauthorized("Invalid password");
@@ -82,7 +82,6 @@ namespace DatingAppAPI.Controllers
                 Username = user.UserName,
                 Token = _tokenService.CreateToken(user)
             };
-
         }
     }
 }
