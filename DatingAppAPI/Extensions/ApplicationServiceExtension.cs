@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DatingAppAPI.Data;
+using DatingAppAPI.Helpers;
 using DatingAppAPI.Interfaces;
 using DatingAppAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ namespace DatingAppAPI.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
             var connectionString = config.GetConnectionString("DefaultConnection");
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlite(connectionString);

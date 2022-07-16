@@ -28,7 +28,7 @@ public class BuggyController : BaseApiController
     {
         var thing = _context.Users.Find(-1);
         if (thing == null) return NotFound();
-        return Ok(thing);
+        return NotFound(thing);
     }
     [HttpGet("server-error")]
     public ActionResult<string> GetServerError()

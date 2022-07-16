@@ -1,4 +1,5 @@
 using System.Security.Cryptography;
+using System.Text;
 using DatingAppAPI.Entities;
 using DatingAppAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace DatingAppAPI.Data;
 
 public class Seed
 {
-    public static async Task SeedUsers(DataContext context, UserService userService)
+    public static async Task SeedUsers(DataContext context)
     {
         if (await context.Users.AnyAsync()) return;
 
@@ -15,9 +16,13 @@ public class Seed
         var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
         foreach (var user in users)
         {
-            var FullUser = userService.CreateUser(user.UserName.ToLower(), "password");
-            context.Users.Add(FullUser);
+            using var hmac = new HMACSHA512();
+            user.UserName = user.UserName.ToLower();
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("password"));
+            user.PasswordSalt = hmac.Key;
+
+            context.Users.Add(user);
         }
-        context.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

@@ -7,7 +7,9 @@ namespace DatingAppAPI.DTOs
 {
     public class UserDto
     {
-        public string Username { get; set; }
+        [JsonPropertyName("username")]
+        public string UserName { get; set; }
+        [JsonPropertyName("password")]
         public string Token { get; set; }
     }
 }

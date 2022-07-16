@@ -1,3 +1,4 @@
+using DatingAppAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DatingAppAPI.Controllers;

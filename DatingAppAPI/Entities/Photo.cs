@@ -11,4 +11,14 @@ public class Photo
     public string PublicId { get; set; }
     public int AppUserId { get; set; }
     public AppUser AppUser { get; set; }
+    private Photo() { }
+
+    public void UpdateUrl(string url)
+    {
+        Url=url;
+    }
+    public void UpdateIsMain(bool isMain)
+    {
+        IsMain=isMain;
+    }
 }

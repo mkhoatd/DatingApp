@@ -47,7 +47,7 @@
                 ".NET Core Launch (web)",
                 "Launch Angular"
             ],
-            "stopAll": true
+            "stopAll": false
         }
     ]
 }

@@ -1,4 +1,4 @@
-namespace DatingAppAPI;
+namespace DatingAppAPI.Entities;
 
 public class WeatherForecast
 {

@@ -9,9 +9,11 @@ namespace DatingAppAPI.DTOs
     public class RegisterDto
     {
         [Required]
-        public string username { get; set; }
+        [JsonPropertyName("username")]
+        public string UserName { get; set; }
         [Required]
         [StringLength(20, MinimumLength = 4)]
-        public string password { get; set; }
+        [JsonPropertyName("password")]
+        public string Password { get; set; }
     }
 }

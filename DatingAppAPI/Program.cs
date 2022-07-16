@@ -1,17 +1,13 @@
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
+global using AutoMapper;
+global using System.Security.Cryptography;
+global using System.Text;
 using Microsoft.EntityFrameworkCore;
 using DatingAppAPI.Data;
 using Serilog;
-using Serilog.Events;
-using Serilog.AspNetCore;
 using Serilog.Sinks.Elasticsearch;
-using DatingAppAPI.Interfaces;
-using DatingAppAPI.Services;
 using DatingAppAPI.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using DatingAppAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +26,11 @@ builder.Host.UseSerilog((context, configuration) => configuration
     .ReadFrom.Configuration(context.Configuration));
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    });
 builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +39,22 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddIdentityServices(builder.Configuration);
 var app = builder.Build();
 
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<DataContext>();
+        await context.Database.MigrateAsync();
+        await Seed.SeedUsers(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occured during migration");
+    }
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
